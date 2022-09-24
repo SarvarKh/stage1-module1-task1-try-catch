@@ -1,5 +1,6 @@
 package com.epam.m1.exceptions;
 
+import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -21,8 +22,15 @@ public class ParseIntegers {
         String justWords = "";
         while (words.hasNext()) {
             String next = words.next();
-            int number = Integer.parseInt(next);
-            // todo: complete it
+            try{
+                int number = Integer.parseInt(next);
+                sum += number;
+            } catch (NumberFormatException e1) {
+                String preProcessed = e1.getMessage().replace("For input string: \"", " ").replace("\"", "");
+                justWords += preProcessed;
+            }
+
+
         }
         System.out.println("Sum is " + sum);
         System.out.println("Just words:" + justWords);
